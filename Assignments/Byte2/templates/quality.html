@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <title>Quality of This Data</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/theme.css" rel="stylesheet">
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="about">About This Data Set</a></li>
+	    <li  class="active"><a href="quality">Data Quality</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+	<h1>Quality: About This Data Set</h1>
+        <p>Write a brief summary about the quality of the data set here</a></p>
+      </div>
+
+    
+      <div class="page-header">
+	<h2>Is the data complete?</h2>
+	<p>
+	In terms of appropriate data, the dataset contains sufficient and adequate information for us to evaluate apps on GooglePlay and give recommendation list. For example, we can judge whether an app is 
+	polular or not by "Insalls", or one has a good reputation or not by "Rating".<br>
+	However, I detected missing values in the dataset, therefore undermining the completeness of the data. 
+	As is indicated in the NaN analyzing result by Pandas on raw data, the following columns --- “Rating”, “Reviews”, “Type”, “Price”, “Current Ver”, “Android Ver” 
+	all contains NaN values. It can be devastating when visualizing those columns, since the NaNs are nonsense compared to numeric values or categorical values. 
+	For example, if I would like to plot the histogram of Ratings, the NaN values can undermine the correctness of the overall distribution of app ratings.<p/>
+	
+	<center>
+	<figure>
+	  <img src="http://gdurl.com/o2Ig" alt="nan" style="width:100%">
+	  <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
+	</figure>
+	</center>
+	
+	<p>I decide to use simple dropping method to handle NaNs, yet I realized if I dropped all rows containing at least one NaN, the remaining entries will only be xxxx. 
+	As is depicted from the table, most NaNs appears at the column of "Android Ver", yet this column has nothing to do with our question. After removinf this column, there's only xxxx rows containing at least one 
+	NaN, now I can simply drop all lines with NaNs, and move on to the next stage. <br>
+	To sum up, the data is not complete since it contains missing data in very important features. I handle this problem by deleting unrelevant columns that contains most of the missing values, then
+	drop all entries with missing values.</p>
+      </div>
+
+	<center>
+	<figure>
+	  <img src="../html/pic_trulli.jpg" alt="Trulli" style="width:100%">
+	  <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
+	</figure>
+	</center>
+	      
+      <div class="page-header">
+	<h2>Is the data coherent?</h2>
+	<p>The first issue on coherency is the duplicate data. I first check if this there is any duplicate rows by counting the time of different apps.
+	The result indicates that several apps appears more than once. The following table calculate the count of entries, we can see that several apps appears more than ones, some even with same ratings. Therefore I dropped 
+	all duplicates and only keep the first entry. Besides, In this case, we can say that the raw data is not coherent in the way of duplication.</p>
+	<center>
+		<img src="http://gdurl.com/d-5v" alt="duplicate" style="width: auto; max-height: 800px; ">
+	</center>
+	<br>
+	<p>
+	Next, I check 
+	</p>
+	<p>Then, I'll select severval columns for demonstration since it might be a tough work to illustrate everything in detail. Here, I choose the column "Rating", the most significant value to make evaluation, and make a histogram. 
+	We can see that the ratings are among 0 to 5, which is noraml for app ratings, and the mean is around 4, which is also intuitive.</p>
+	<center>
+		<img src="http://gdurl.com/VaX5o" alt="duplicate" style="width: auto; max-height: 800px; ">
+	</center>
+	<br>  
+	<p>
+	Apart from that, I checked
+	</p>
+	<p>
+	Finally, I examine the columns of "Category" and "Genres", it can be concluded these two columns acutually contain lots of intersection, therefore I deleted column "Genres" to avoid duplication. Moreover, since the last updated
+	and the version info is not quite related to the question we want to solve, I also drop them in order to avoid redundancy in data.
+	</p>    
+    
+    </div>
+	
+
+      <div class="page-header">
+	<h2>Is the data correct?</h2>
+	<p>What aspects of this data can you verify? How did you do so? What did
+	you find?</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+  </body>
+</html>
