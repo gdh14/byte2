@@ -31,7 +31,7 @@ API_KEY = 'AIzaSyCB9sRQFHKwF3DcOK77Q_xRbeuVvroCgAE'
 service = build('fusiontables', 'v1', developerKey=API_KEY)
 
 # This is the table id for the fusion table
-TABLE_ID = '1e0WfLKl0Z6HuNz6SHwomHK3WSQgWIDa_hMYz1yif'
+TABLE_ID = '1dv6yKrv_kE329sHe6GHtYR09IPO73SKADJ_SMzff'
 
 # This is the default columns for the query
 query_cols = []
@@ -43,7 +43,7 @@ app = Flask(__name__)
 
 def get_all_data(query):
     #Example from the assignment instructions
-    query = "SELECT * FROM " + TABLE_ID + " LIMIT 10"
+    query = "SELECT * FROM " + TABLE_ID + " WHERE Category = 'GAME' " + "ORDER BY Rating DESC " + "LIMIT 50"
     #response = service.query().sql(sql=query).execute()
     #logging.info(response['columns'])
     #logging.info(response['rows'])
